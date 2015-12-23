@@ -35,7 +35,7 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         let archillectTextField = NSTextField(frame: NSMakeRect(0,0,100,45))
         archillectTextField.editable = true
         archillectTextField.font = NSFont(name: "Menlo", size: 24)
-        archillectTextField.placeholderString = "12345"
+        archillectTextField.placeholderString = "43061"
         
         goToAlert.accessoryView = archillectTextField
         
