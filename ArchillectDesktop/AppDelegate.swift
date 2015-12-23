@@ -10,9 +10,11 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    let archillectWindow = ArchillectWindow()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        archillectWindow.makeKeyAndOrderFront(nil)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
