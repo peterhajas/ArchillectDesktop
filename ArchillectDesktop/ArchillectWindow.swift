@@ -28,11 +28,11 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     
     func goToArchillect() {
         let goToAlert = NSAlert()
-        goToAlert.messageText = "Go to Archillect: "
+        goToAlert.messageText = "Enter Archillect Number:"
         goToAlert.addButtonWithTitle("Go")
         goToAlert.addButtonWithTitle("Cancel")
         
-        let archillectTextField = NSTextField(frame: NSMakeRect(0,0,300,50))
+        let archillectTextField = NSTextField(frame: NSMakeRect(0,0,100,45))
         archillectTextField.editable = true
         archillectTextField.font = NSFont(name: "Menlo", size: 24)
         archillectTextField.placeholderString = "12345"
