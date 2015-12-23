@@ -12,7 +12,7 @@ import WebKit
 class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     let defaultContentDimension: CGFloat = 500
     let defaultContentRectOffset: CGFloat = 10
-    let defaultStyleMask = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask
+    let defaultStyleMask = NSBorderlessWindowMask | NSResizableWindowMask
     
     let movingView: ArchillectMovingView
     let webView: WKWebView
