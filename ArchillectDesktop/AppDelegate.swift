@@ -10,17 +10,22 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
     let archillectWindow = ArchillectWindow()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         archillectWindow.makeKeyAndOrderFront(nil)
     }
-
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
+    
+    @IBAction func goHome(sender: AnyObject) {
+        archillectWindow.goHome()
     }
-
-
+    
+    @IBAction func goToArchillect(sender: AnyObject) {
+        archillectWindow.goToArchillect()
+    }
+    
+    @IBAction func toggleMusic(sender: AnyObject) {
+        archillectWindow.toggleMusic()
+    }
 }
 

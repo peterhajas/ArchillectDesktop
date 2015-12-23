@@ -16,7 +16,46 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     
     let movingView: ArchillectMovingView
     let webView: WKWebView
+    
+    func goToArchillectURLWithSuffix(suffix: String) {
+        let request = archillectURLRequestWithSuffix(suffix)
+        webView.loadRequest(request)
+    }
+    
+    func goHome() {
+        goToArchillectURLWithSuffix("TV")
+    }
+    
+    func goToArchillect() {
+        let goToAlert = NSAlert()
+        goToAlert.messageText = "Go to Archillect: "
+        goToAlert.addButtonWithTitle("Go")
+        goToAlert.addButtonWithTitle("Cancel")
         
+        let archillectTextField = NSTextField(frame: NSMakeRect(0,0,300,50))
+        archillectTextField.editable = true
+        archillectTextField.font = NSFont(name: "Menlo", size: 24)
+        archillectTextField.placeholderString = "12345"
+        
+        goToAlert.accessoryView = archillectTextField
+        
+        goToAlert.beginSheetModalForWindow(self) { (response: NSModalResponse) -> Void in
+            if response == 1000 {
+                // Go was pushed
+                
+                let archillectNumber = archillectTextField.stringValue
+                self.goToArchillectURLWithSuffix(archillectNumber)
+            }
+            else {
+                // Cancel was pushed
+            }
+        }
+    }
+    
+    func toggleMusic() {
+        
+    }
+    
     func movingViewLocationShouldChangeByAmount(movingView: ArchillectMovingView, amount: CGVector) {
         var windowFrame = self.frame
         windowFrame.offsetInPlace(dx: amount.dx, dy: amount.dy)
@@ -41,10 +80,6 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         return urlRequest
     }
     
-    func archillectTVURLRequest() -> NSURLRequest {
-        return archillectURLRequestWithSuffix("tv")
-    }
-    
     init() {
         let frame = CGRectMake(0, 0, defaultContentDimension, defaultContentDimension)
         
@@ -59,8 +94,8 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         movingView.delegate = self
         
         self.contentView = movingView
-        let request = archillectTVURLRequest()
-        webView.loadRequest(request)
+        
+        goHome()
     }
 
     required init?(coder: NSCoder) {
