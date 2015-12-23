@@ -16,9 +16,7 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     
     let movingView: ArchillectMovingView
     let webView: WKWebView
-    
-    override var acceptsFirstResponder: Bool { return true }
-    
+        
     func movingViewLocationShouldChangeByAmount(movingView: ArchillectMovingView, amount: CGVector) {
         var windowFrame = self.frame
         windowFrame.offsetInPlace(dx: amount.dx, dy: amount.dy)
