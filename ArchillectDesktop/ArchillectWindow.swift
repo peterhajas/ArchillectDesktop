@@ -53,7 +53,9 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     }
     
     func toggleMusic() {
+        let playPauseScriptString = "document.getElementById(\"playpause\").click()"
         
+        webView.evaluateJavaScript(playPauseScriptString, completionHandler: nil)
     }
     
     func movingViewLocationShouldChangeByAmount(movingView: ArchillectMovingView, amount: CGVector) {
