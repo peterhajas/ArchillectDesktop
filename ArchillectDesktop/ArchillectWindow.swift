@@ -17,6 +17,11 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     let movingView: ArchillectMovingView
     let webView: WKWebView
     
+    let webViewConfiguration = WKWebViewConfiguration()
+    let userContentController = WKUserContentController()
+    
+    let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
+    
     func goToArchillectURLWithSuffix(suffix: String) {
         let request = archillectURLRequestWithSuffix(suffix)
         webView.loadRequest(request)
@@ -100,7 +105,10 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     init() {
         let frame = CGRectMake(0, 0, defaultContentDimension, defaultContentDimension)
         
-        webView = WKWebView(frame: frame)
+        webViewConfiguration.userContentController = userContentController
+        userContentController.addUserScript(hideCommentsScript)
+        
+        webView = WKWebView(frame: frame, configuration: webViewConfiguration)
         webView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
         
         movingView = ArchillectMovingView(frame: frame)
