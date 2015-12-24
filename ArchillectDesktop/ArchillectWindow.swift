@@ -52,6 +52,21 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         }
     }
     
+    func randomArchillectNumber() -> Int {
+        let maximum: Int = 40000
+        
+        let random = Int(arc4random_uniform(UInt32(maximum)) + 1)
+        
+        return random
+    }
+    
+    func goToRandomArchillect() {
+        let randomNumber = randomArchillectNumber()
+        let randomSuffix = "\(randomNumber)"
+        
+        self.goToArchillectURLWithSuffix(randomSuffix)
+    }
+    
     func toggleMusic() {
         let playPauseScriptString = "document.getElementById(\"playpause\").click()"
         

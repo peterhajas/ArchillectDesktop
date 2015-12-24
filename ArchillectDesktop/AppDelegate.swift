@@ -24,6 +24,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         archillectWindow.goToArchillect()
     }
     
+    @IBAction func goToRandomArchillect(sender: AnyObject) {
+        archillectWindow.goToRandomArchillect()
+    }
+    
     @IBAction func toggleMusic(sender: AnyObject) {
         archillectWindow.toggleMusic()
     }

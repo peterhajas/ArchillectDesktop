@@ -37,6 +37,11 @@
                                     <action selector="goToArchillect:" target="Voe-Tx-rLC" id="J0b-eN-3FU"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Random Archillect" keyEquivalent="r" id="WWt-9X-fq2">
+                                <connections>
+                                    <action selector="goToRandomArchillect:" target="Voe-Tx-rLC" id="RuO-ZD-Kj4"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Toggle Music" keyEquivalent="t" id="Rv2-bA-TyJ">
                                 <connections>
                                     <action selector="toggleMusic:" target="Voe-Tx-rLC" id="BpR-ev-Tel"/>
