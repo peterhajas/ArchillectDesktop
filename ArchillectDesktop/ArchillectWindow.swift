@@ -13,22 +13,18 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     let defaultContentDimension: CGFloat = 500
     let defaultContentRectOffset: CGFloat = 10
     let defaultStyleMask = NSBorderlessWindowMask | NSResizableWindowMask
-    
-    let movingView: ArchillectMovingView
-    let webView: WKWebView
-    
-    let webViewConfiguration = WKWebViewConfiguration()
-    let userContentController = WKUserContentController()
-    
-    let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
-    
-    func goToArchillectURLWithSuffix(suffix: String) {
-        let request = archillectURLRequestWithSuffix(suffix)
-        webView.loadRequest(request)
-    }
+    let archillectContentView: ArchillectContentView
     
     func goHome() {
-        goToArchillectURLWithSuffix("TV")
+        archillectContentView.goHome()
+    }
+    
+    func goToRandomArchillect() {
+        archillectContentView.goToRandomArchillect()
+    }
+    
+    func toggleMusic() {
+        archillectContentView.toggleMusic()
     }
     
     func goToArchillect() {
@@ -49,33 +45,12 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
                 // Go was pushed
                 
                 let archillectNumber = archillectTextField.stringValue
-                self.goToArchillectURLWithSuffix(archillectNumber)
+                self.archillectContentView.goToArchillectURLWithSuffix(archillectNumber)
             }
             else {
                 // Cancel was pushed
             }
         }
-    }
-    
-    func randomArchillectNumber() -> Int {
-        let maximum: Int = 40000
-        
-        let random = Int(arc4random_uniform(UInt32(maximum)) + 1)
-        
-        return random
-    }
-    
-    func goToRandomArchillect() {
-        let randomNumber = randomArchillectNumber()
-        let randomSuffix = "\(randomNumber)"
-        
-        self.goToArchillectURLWithSuffix(randomSuffix)
-    }
-    
-    func toggleMusic() {
-        let playPauseScriptString = "document.getElementById(\"playpause\").click()"
-        
-        webView.evaluateJavaScript(playPauseScriptString, completionHandler: nil)
     }
     
     func movingViewLocationShouldChangeByAmount(movingView: ArchillectMovingView, amount: CGVector) {
@@ -84,43 +59,16 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         self.setFrame(windowFrame, display: true)
     }
     
-    func archillectURLWithSuffix(suffix: String) -> NSURL {
-        let baseURL: NSString = "http://archillect.com"
-        
-        let urlString = (baseURL as String) + "/" + suffix
-        
-        let url = NSURL(string: urlString)!
-        
-        return url
-    }
-    
-    func archillectURLRequestWithSuffix(suffix: String) -> NSURLRequest {
-        let url = archillectURLWithSuffix(suffix)
-        
-        let urlRequest = NSURLRequest(URL: url)
-        
-        return urlRequest
-    }
-    
     init() {
         let frame = CGRectMake(0, 0, defaultContentDimension, defaultContentDimension)
         
-        webViewConfiguration.userContentController = userContentController
-        userContentController.addUserScript(hideCommentsScript)
+        archillectContentView = ArchillectContentView(frame: frame)
         
-        webView = WKWebView(frame: frame, configuration: webViewConfiguration)
-        webView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
-        
-        movingView = ArchillectMovingView(frame: frame)
-        movingView.addSubview(webView)
-
         super.init(contentRect: NSMakeRect(defaultContentRectOffset, defaultContentRectOffset, defaultContentDimension, defaultContentDimension), styleMask: defaultStyleMask, backing: .Retained, `defer`: false)
         
-        movingView.delegate = self
+        archillectContentView.movementDelegate = self
         
-        self.contentView = movingView
-        
-        goHome()
+        self.contentView = archillectContentView
     }
 
     required init?(coder: NSCoder) {

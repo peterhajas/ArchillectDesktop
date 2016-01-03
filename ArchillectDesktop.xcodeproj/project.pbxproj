@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F49EB451C38BA4300E927ED /* ArchillectContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F49EB441C38BA4300E927ED /* ArchillectContentView.swift */; };
 		4FC8794F1C2B54F300079CA6 /* ArchillectMovingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8794E1C2B54F300079CA6 /* ArchillectMovingView.swift */; };
 		4FEF187D1C2B334100D538A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF187C1C2B334100D538A4 /* AppDelegate.swift */; };
 		4FEF187F1C2B334100D538A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FEF187E1C2B334100D538A4 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F49EB441C38BA4300E927ED /* ArchillectContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchillectContentView.swift; sourceTree = "<group>"; };
 		4FC8794E1C2B54F300079CA6 /* ArchillectMovingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchillectMovingView.swift; sourceTree = "<group>"; };
 		4FEF18791C2B334100D538A4 /* Archillect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archillect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEF187C1C2B334100D538A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				4FEF187C1C2B334100D538A4 /* AppDelegate.swift */,
 				4FEF18891C2B343800D538A4 /* ArchillectWindow.swift */,
+				4F49EB441C38BA4300E927ED /* ArchillectContentView.swift */,
 				4FC8794E1C2B54F300079CA6 /* ArchillectMovingView.swift */,
 				4FEF187E1C2B334100D538A4 /* Assets.xcassets */,
 				4FEF18801C2B334100D538A4 /* MainMenu.xib */,
@@ -137,6 +140,7 @@
 				4FC8794F1C2B54F300079CA6 /* ArchillectMovingView.swift in Sources */,
 				4FEF188A1C2B343800D538A4 /* ArchillectWindow.swift in Sources */,
 				4FEF187D1C2B334100D538A4 /* AppDelegate.swift in Sources */,
+				4F49EB451C38BA4300E927ED /* ArchillectContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
