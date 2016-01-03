@@ -31,5 +31,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func toggleMusic(sender: AnyObject) {
         archillectWindow.toggleMusic()
     }
+    
+    @IBAction func toggleFullscreen(sender: AnyObject) {
+        archillectWindow.toggleFullScreen(sender)
+    }
 }
 

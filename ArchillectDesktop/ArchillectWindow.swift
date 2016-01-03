@@ -13,6 +13,7 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
     let defaultContentDimension: CGFloat = 500
     let defaultContentRectOffset: CGFloat = 10
     let defaultStyleMask = NSBorderlessWindowMask | NSResizableWindowMask
+    let windowCollectionBehavior: NSWindowCollectionBehavior = [.Default, .FullScreenPrimary, .FullScreenAllowsTiling]
     let archillectContentView: ArchillectContentView
     
     func goHome() {
@@ -65,6 +66,7 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         archillectContentView = ArchillectContentView(frame: frame)
         
         super.init(contentRect: NSMakeRect(defaultContentRectOffset, defaultContentRectOffset, defaultContentDimension, defaultContentDimension), styleMask: defaultStyleMask, backing: .Retained, `defer`: false)
+        self.collectionBehavior = windowCollectionBehavior
         
         archillectContentView.movementDelegate = self
         
