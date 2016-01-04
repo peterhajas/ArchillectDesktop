@@ -16,11 +16,11 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="ArchillectDesktop" id="1Xt-HY-uBw">
+                <menuItem title="Archillect" id="1Xt-HY-uBw">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="ArchillectDesktop" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="Archillect" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About ArchillectDesktop" id="5kV-Vb-QxS">
+                            <menuItem title="About Archillect (Desktop)" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
