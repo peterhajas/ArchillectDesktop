@@ -17,16 +17,10 @@ protocol ArchillectMovingViewDelegate {
 class ArchillectMovingView : NSView {
     var lastMouseLocation: CGPoint = CGPointZero
     
-    var _currentMoveOffsetFromMouseDown: CGVector = CGVector.zero
-    var currentMoveOffsetFromMouseDown: CGVector {
-        get {
-            return _currentMoveOffsetFromMouseDown
-        }
-        set (offset) {
-            _currentMoveOffsetFromMouseDown = offset
-            
+    var currentMoveOffsetFromMouseDown: CGVector = CGVector.zero {
+        didSet {
             if let ourDelegate = delegate {
-                ourDelegate.movingViewLocationShouldChangeByAmount(self, amount: offset)
+                ourDelegate.movingViewLocationShouldChangeByAmount(self, amount: self.currentMoveOffsetFromMouseDown)
             }
         }
     }
