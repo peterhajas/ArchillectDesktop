@@ -15,6 +15,7 @@ class ArchillectContentView : NSView {
     let userContentController = WKUserContentController()
     let webView: WKWebView
     
+    let imageFillBoundsScript = WKUserScript(source:"document.getElementById(\"ii\").style.width = \'100%\'", injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
     let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
     
     var movementDelegate: ArchillectMovingViewDelegate? {
@@ -76,6 +77,7 @@ class ArchillectContentView : NSView {
     
     override init(frame: CGRect) {
         webViewConfiguration.userContentController = userContentController
+        userContentController.addUserScript(imageFillBoundsScript)
         userContentController.addUserScript(hideCommentsScript)
         
         webView = WKWebView(frame: frame, configuration: webViewConfiguration)
