@@ -11,11 +11,11 @@ import AppKit
 // This is an NSView that steals clicks to notify its window
 
 protocol ArchillectMovingViewDelegate {
-    func movingViewLocationShouldChangeByAmount(movingView: ArchillectMovingView, amount: CGVector)
+    func movingViewLocationShouldChangeByAmount(_ movingView: ArchillectMovingView, amount: CGVector)
 }
 
 class ArchillectMovingView : NSView {
-    var lastMouseLocation: CGPoint = CGPointZero
+    var lastMouseLocation: CGPoint = CGPoint.zero
     
     var currentMoveOffsetFromMouseDown: CGVector = CGVector.zero {
         didSet {
@@ -30,37 +30,37 @@ class ArchillectMovingView : NSView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.wantsLayer = true
-        self.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+        self.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         let location = NSEvent.mouseLocation()
         self.lastMouseLocation = location
         self.currentMoveOffsetFromMouseDown = CGVector.zero
     }
     
-    override func mouseDragged(theEvent: NSEvent) {
+    override func mouseDragged(with theEvent: NSEvent) {
         let location = NSEvent.mouseLocation()
-        let offset = CGVectorMake(location.x - self.lastMouseLocation.x,
-                                  location.y - self.lastMouseLocation.y)
+        let offset = CGVector(dx: location.x - self.lastMouseLocation.x,
+                                  dy: location.y - self.lastMouseLocation.y)
         
         self.currentMoveOffsetFromMouseDown = offset
         
         self.lastMouseLocation = location
     }
     
-    override func mouseUp(theEvent: NSEvent) {
+    override func mouseUp(with theEvent: NSEvent) {
         let location = NSEvent.mouseLocation()
         self.lastMouseLocation = location
         self.currentMoveOffsetFromMouseDown = CGVector.zero
     }
     
-    override func hitTest(aPoint: NSPoint) -> NSView? {
-        if ((self.layer?.containsPoint(aPoint)) != nil) {
+    override func hitTest(_ aPoint: NSPoint) -> NSView? {
+        if ((self.layer?.contains(aPoint)) != nil) {
             return self
         }
         else {

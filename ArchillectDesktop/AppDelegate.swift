@@ -12,27 +12,27 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     let archillectWindow = ArchillectWindow()
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         archillectWindow.makeKeyAndOrderFront(nil)
     }
     
-    @IBAction func goHome(sender: AnyObject) {
+    @IBAction func goHome(_ sender: AnyObject) {
         archillectWindow.goHome()
     }
     
-    @IBAction func goToArchillect(sender: AnyObject) {
+    @IBAction func goToArchillect(_ sender: AnyObject) {
         archillectWindow.goToArchillect()
     }
     
-    @IBAction func goToRandomArchillect(sender: AnyObject) {
+    @IBAction func goToRandomArchillect(_ sender: AnyObject) {
         archillectWindow.goToRandomArchillect()
     }
     
-    @IBAction func toggleMusic(sender: AnyObject) {
+    @IBAction func toggleMusic(_ sender: AnyObject) {
         archillectWindow.toggleMusic()
     }
     
-    @IBAction func toggleFullscreen(sender: AnyObject) {
+    @IBAction func toggleFullscreen(_ sender: AnyObject) {
         archillectWindow.toggleFullScreen(sender)
     }
 }

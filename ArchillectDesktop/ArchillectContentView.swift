@@ -15,8 +15,8 @@ class ArchillectContentView : NSView {
     let userContentController = WKUserContentController()
     let webView: WKWebView
     
-    let imageFillBoundsScript = WKUserScript(source:"document.getElementById(\"ii\").style.width = \'100%\'", injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
-    let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
+    let imageFillBoundsScript = WKUserScript(source:"document.getElementById(\"ii\").style.width = \'100%\'", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+    let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
     
     var movementDelegate: ArchillectMovingViewDelegate? {
         get {
@@ -27,29 +27,29 @@ class ArchillectContentView : NSView {
         }
     }
     
-    func goToArchillectURLWithSuffix(suffix: String) {
+    func goToArchillectURLWithSuffix(_ suffix: String) {
         let request = archillectURLRequestWithSuffix(suffix)
-        webView.loadRequest(request)
+        webView.load(request)
     }
     
     func goHome() {
         goToArchillectURLWithSuffix("TV")
     }
     
-    func archillectURLWithSuffix(suffix: String) -> NSURL {
+    func archillectURLWithSuffix(_ suffix: String) -> URL {
         let baseURL: NSString = "http://archillect.com"
         
         let urlString = (baseURL as String) + "/" + suffix
         
-        let url = NSURL(string: urlString)!
+        let url = URL(string: urlString)!
         
         return url
     }
     
-    func archillectURLRequestWithSuffix(suffix: String) -> NSURLRequest {
+    func archillectURLRequestWithSuffix(_ suffix: String) -> URLRequest {
         let url = archillectURLWithSuffix(suffix)
         
-        let urlRequest = NSURLRequest(URL: url)
+        let urlRequest = URLRequest(url: url)
         
         return urlRequest
     }
@@ -81,13 +81,13 @@ class ArchillectContentView : NSView {
         userContentController.addUserScript(hideCommentsScript)
         
         webView = WKWebView(frame: frame, configuration: webViewConfiguration)
-        webView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+        webView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
         movingView = ArchillectMovingView(frame: frame)
 
         super.init(frame: frame)
         self.wantsLayer = true
-        self.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+        self.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
         self.addSubview(webView)
         self.addSubview(movingView)
