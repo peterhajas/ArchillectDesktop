@@ -45,7 +45,7 @@ class ArchillectContentView : NSView {
     }
     
     func randomArchillectNumber() -> Int {
-        let maximum: Int = 40000
+        let maximum: Int = 100000
         
         let random = Int(arc4random_uniform(UInt32(maximum)) + 1)
         
