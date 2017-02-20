@@ -28,10 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         archillectWindow.goToRandomArchillect()
     }
     
-    @IBAction func toggleMusic(_ sender: AnyObject) {
-        archillectWindow.toggleMusic()
-    }
-    
     @IBAction func toggleFullscreen(_ sender: AnyObject) {
         archillectWindow.toggleFullScreen(sender)
     }

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -40,11 +40,6 @@
                             <menuItem title="Random Archillect" keyEquivalent="r" id="WWt-9X-fq2">
                                 <connections>
                                     <action selector="goToRandomArchillect:" target="Voe-Tx-rLC" id="RuO-ZD-Kj4"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Toggle Music" keyEquivalent="t" id="Rv2-bA-TyJ">
-                                <connections>
-                                    <action selector="toggleMusic:" target="Voe-Tx-rLC" id="BpR-ev-Tel"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>

@@ -24,10 +24,6 @@ class ArchillectWindow : NSWindow {
         archillectContentView.goToRandomArchillect()
     }
     
-    func toggleMusic() {
-        archillectContentView.toggleMusic()
-    }
-    
     func goToArchillect() {
         let goToAlert = NSAlert()
         goToAlert.messageText = "Enter Archillect Number:"

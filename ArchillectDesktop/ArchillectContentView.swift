@@ -16,6 +16,7 @@ class ArchillectContentView : NSView {
     
     let imageFillBoundsScript = WKUserScript(source:"document.getElementById(\"ii\").style.width = \'100%\'", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
     let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+    let removeMusicScript = WKUserScript(source: "document.getElementById(\"soundcloud\").remove()", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
     
     func goToArchillectURLWithSuffix(_ suffix: String) {
         let request = archillectURLRequestWithSuffix(suffix)
@@ -59,16 +60,11 @@ class ArchillectContentView : NSView {
         self.goToArchillectURLWithSuffix(randomSuffix)
     }
     
-    func toggleMusic() {
-        let playPauseScriptString = "document.getElementById(\"playpause\").click()"
-        
-        webView.evaluateJavaScript(playPauseScriptString, completionHandler: nil)
-    }
-    
     override init(frame: CGRect) {
         webViewConfiguration.userContentController = userContentController
         userContentController.addUserScript(imageFillBoundsScript)
         userContentController.addUserScript(hideCommentsScript)
+        userContentController.addUserScript(removeMusicScript)
         
         webView = NonHittestingWebView(frame: frame, configuration: webViewConfiguration)
         webView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
