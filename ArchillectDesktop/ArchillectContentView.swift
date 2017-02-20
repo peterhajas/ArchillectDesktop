@@ -29,9 +29,7 @@ class ArchillectContentView : NSView {
     
     func archillectURLWithSuffix(_ suffix: String) -> URL {
         let baseURL: NSString = "http://archillect.com"
-        
         let urlString = (baseURL as String) + "/" + suffix
-        
         let url = URL(string: urlString)!
         
         return url
@@ -39,7 +37,6 @@ class ArchillectContentView : NSView {
     
     func archillectURLRequestWithSuffix(_ suffix: String) -> URLRequest {
         let url = archillectURLWithSuffix(suffix)
-        
         let urlRequest = URLRequest(url: url)
         
         return urlRequest
@@ -47,7 +44,6 @@ class ArchillectContentView : NSView {
     
     func randomArchillectNumber() -> Int {
         let maximum: Int = 100000
-        
         let random = Int(arc4random_uniform(UInt32(maximum)) + 1)
         
         return random
@@ -57,7 +53,7 @@ class ArchillectContentView : NSView {
         let randomNumber = randomArchillectNumber()
         let randomSuffix = "\(randomNumber)"
         
-        self.goToArchillectURLWithSuffix(randomSuffix)
+        goToArchillectURLWithSuffix(randomSuffix)
     }
     
     override init(frame: CGRect) {
@@ -70,10 +66,10 @@ class ArchillectContentView : NSView {
         webView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
         super.init(frame: frame)
-        self.wantsLayer = true
-        self.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        wantsLayer = true
+        autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
-        self.addSubview(webView)
+        addSubview(webView)
         
         goHome()
     }

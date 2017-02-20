@@ -39,27 +39,20 @@ class ArchillectWindow : NSWindow {
         
         goToAlert.beginSheetModal(for: self, completionHandler: { (response: NSModalResponse) -> Void in
             if response == 1000 {
-                // Go was pushed
-                
                 let archillectNumber = archillectTextField.stringValue
                 self.archillectContentView.goToArchillectURLWithSuffix(archillectNumber)
-            }
-            else {
-                // Cancel was pushed
             }
         }) 
     }
     
     init() {
         let frame = CGRect(x: 0, y: 0, width: defaultContentDimension, height: defaultContentDimension)
-        
         archillectContentView = ArchillectContentView(frame: frame)
         
         super.init(contentRect: NSMakeRect(defaultContentRectOffset, defaultContentRectOffset, defaultContentDimension, defaultContentDimension), styleMask: defaultStyleMask, backing: .retained, defer: false)
-        self.collectionBehavior = windowCollectionBehavior
+        collectionBehavior = windowCollectionBehavior
         
-        self.contentView = archillectContentView
-        
+        contentView = archillectContentView
         isMovableByWindowBackground = true
     }
 }
