@@ -9,10 +9,10 @@
 import AppKit
 import WebKit
 
-class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
+class ArchillectWindow : NSWindow {
     let defaultContentDimension: CGFloat = 500
     let defaultContentRectOffset: CGFloat = 10
-    let defaultStyleMask: NSWindowStyleMask = [.borderless, .resizable]
+    let defaultStyleMask: NSWindowStyleMask = [.borderless, .resizable, .fullSizeContentView]
     let windowCollectionBehavior: NSWindowCollectionBehavior = [.fullScreenPrimary, .fullScreenAllowsTiling]
     let archillectContentView: ArchillectContentView
     
@@ -54,13 +54,6 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         }) 
     }
     
-    func movingViewLocationShouldChangeByAmount(_ movingView: ArchillectMovingView, amount: CGVector) {
-        var windowFrame = self.frame
-        windowFrame.origin.x += amount.dx
-        windowFrame.origin.y += amount.dy
-        self.setFrame(windowFrame, display: true)
-    }
-    
     init() {
         let frame = CGRect(x: 0, y: 0, width: defaultContentDimension, height: defaultContentDimension)
         
@@ -69,8 +62,8 @@ class ArchillectWindow : NSWindow, ArchillectMovingViewDelegate {
         super.init(contentRect: NSMakeRect(defaultContentRectOffset, defaultContentRectOffset, defaultContentDimension, defaultContentDimension), styleMask: defaultStyleMask, backing: .retained, defer: false)
         self.collectionBehavior = windowCollectionBehavior
         
-        archillectContentView.movementDelegate = self
-        
         self.contentView = archillectContentView
+        
+        isMovableByWindowBackground = true
     }
 }

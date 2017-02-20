@@ -10,22 +10,12 @@ import AppKit
 import WebKit
 
 class ArchillectContentView : NSView {
-    let movingView: ArchillectMovingView
     let webViewConfiguration = WKWebViewConfiguration()
     let userContentController = WKUserContentController()
-    let webView: WKWebView
+    let webView: NonHittestingWebView
     
     let imageFillBoundsScript = WKUserScript(source:"document.getElementById(\"ii\").style.width = \'100%\'", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
     let hideCommentsScript = WKUserScript(source: "document.getElementById(\"disqus_thread\").remove()", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-    
-    var movementDelegate: ArchillectMovingViewDelegate? {
-        get {
-            return movingView.delegate
-        }
-        set(delegate) {
-            movingView.delegate = delegate
-        }
-    }
     
     func goToArchillectURLWithSuffix(_ suffix: String) {
         let request = archillectURLRequestWithSuffix(suffix)
@@ -80,21 +70,20 @@ class ArchillectContentView : NSView {
         userContentController.addUserScript(imageFillBoundsScript)
         userContentController.addUserScript(hideCommentsScript)
         
-        webView = WKWebView(frame: frame, configuration: webViewConfiguration)
+        webView = NonHittestingWebView(frame: frame, configuration: webViewConfiguration)
         webView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
-        movingView = ArchillectMovingView(frame: frame)
-
         super.init(frame: frame)
         self.wantsLayer = true
         self.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
         self.addSubview(webView)
-        self.addSubview(movingView)
         
         goHome()
     }
-
+    
+    override var mouseDownCanMoveWindow: Bool { return true }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
